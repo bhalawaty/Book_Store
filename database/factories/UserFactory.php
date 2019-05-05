@@ -49,7 +49,9 @@ $factory->define(Book::class, function (Faker $faker) {
         'publisher_id'=> function(){
             return factory(App\Publisher::class)->create()->id;
         },
-        'title'=> $faker->title,
+        'description' => $faker->paragraph,
+        'img' => $faker->image(),
+        'title' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'publication_date'=> $faker->date(),
         'edition'=> $faker->randomDigit,
         'available_quantity'=> $faker->randomDigit,

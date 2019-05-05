@@ -24,5 +24,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        view()->composer('layouts.app', function ($view) {
+            $view->with('tags', \App\Genre::pluck('name'));
+        });
     }
 }

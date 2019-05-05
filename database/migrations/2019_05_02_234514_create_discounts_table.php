@@ -20,18 +20,11 @@ class CreateDiscountsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('customer_discount', function (Blueprint $table) {
-            $table->integer('customer_id');
-            $table->integer('discount_id');
-
-
-        });
-
 
         Schema::create('book_discount', function (Blueprint $table) {
             $table->integer('book_id');
             $table->integer('discount_id');
-
+            $table->primary(['book_id', 'discount_id']);
         });
     }
 
@@ -43,7 +36,6 @@ class CreateDiscountsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('discounts');
-        Schema::dropIfExists('customer_discount');
         Schema::dropIfExists('book_discount');
     }
 }
