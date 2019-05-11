@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'BooksController@index');
-Route::get('/book/{book}', 'BooksController@show');
+Route::get('/books/create', 'BooksController@create');
+Route::post('/books/create', 'BooksController@store');
+Route::get('/books/{book}', 'BooksController@show');
 Route::get('/tag/{tag}', 'TagsController@index');
-
+Route::post('/books/{book}/reviews', 'ReviewsController@store');

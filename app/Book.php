@@ -5,14 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    public function publisher()
-    {
-        return $this->belongsTo(Publisher::class);
-    }
 
-    public function author()
+    protected $guarded = [];
+
+
+    public function user()
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsTo(User::class);
     }
 
     public function genres()
@@ -23,6 +22,16 @@ class Book extends Model
     public function discount()
     {
         return $this->belongsToMany(Discount::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function addReview($review)
+    {
+        $this->reviews()->create($review);
     }
 
 

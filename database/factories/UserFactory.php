@@ -42,13 +42,11 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->define(Book::class, function (Faker $faker) {
     return [
-
-        'author_id'=> function(){
-            return factory(App\Author::class)->create()->id;
+        'user_id' => function () {
+            return factory(App\User::class)->create()->id;
         },
-        'publisher_id'=> function(){
-            return factory(App\Publisher::class)->create()->id;
-        },
+        'author_name' => $faker->name,
+        'publisher_name' => $faker->name,
         'description' => $faker->paragraph,
         'img' => $faker->image(),
         'title' => $faker->sentence($nbWords = 2, $variableNbWords = true),
@@ -60,18 +58,6 @@ $factory->define(Book::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Publisher::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-    ];
-});
-
-$factory->define(Author::class, function (Faker $faker) {
-    return [
-        'name' => $faker->name,
-        'company_name'=> $faker->company,
-    ];
-});
 
 $factory->define(Review::class, function (Faker $faker) {
     return [
@@ -81,7 +67,7 @@ $factory->define(Review::class, function (Faker $faker) {
     'user_id'=>function(){
         return factory(App\User::class)->create()->id;
     },
-    'review'=> $faker->randomDigit,
+        'review' => $faker->paragraph,
 
     ];
 });

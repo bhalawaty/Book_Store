@@ -23,8 +23,8 @@
                             <h3 class="mb-0">{{$book->title}}</h3>
                             <div class="mb-1 text-muted">publication date: {{$book->publication_date}}</div>
                             <p class="card-text mb-auto">{{$book->description}}.</p>
-                            <div class="mb-1 text-muted">Author: {{$book->Author->name}}</div>
-                            <div class="mb-1 text-muted">Publisher: {{$book->publisher->name}}</div>
+                            <div class="mb-1 text-muted">Author: {{$book->author_name}}</div>
+                            <div class="mb-1 text-muted">Publisher: {{$book->publisher_name}}</div>
                             <strong class="d-inline-block mb-2 text-primary">Price:{{$book->price}}$</strong>
                             {{--{{dd($book->discount->pluck('name'))}}--}}
                             @foreach($book->discount->pluck('value') as $discount )
@@ -46,6 +46,45 @@
 
             </div><!-- /.blog-main -->
         </div>
+        <div class="row">
+            <div class="col-md-12 blog-main">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Reviews</h3>
+                    </div>
+                    @foreach($book->reviews as $review )
+                        <div class="card-body">
+                            <h4 class="card-title">By: <a href="#">{{$review->user->name}}</a>
+                                said {{$review->created_at->diffForHumans() }}</h4>
+                            <p class="card-text">{{$review->review}}.</p>
+                        </div>
+                        <hr>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        @if(auth()->check())
+            <div class="row">
+                <div class="col-md-12 blog-main">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5> Add Reviews</h5>
+                        </div>
+                        <form action="/books/{{$book->id}}/reviews" method="post">
+                            {{csrf_field()}}
+
+                            <div class="form-group">
+                                <textarea class="form-control" name="review" id="review"> </textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 @section('footer')

@@ -15,7 +15,7 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+        $books = Book::latest()->get();
         return view('books.index', compact('books'));
     }
 
@@ -26,7 +26,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -37,7 +37,18 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Book::create([
+            'title' => request('title'),
+            'author_name' => request('author_name'),
+            'publisher_name' => request('publisher_name'),
+            'publication_date' => request('publication_date'),
+            'edition' => request('edition'),
+            'available_quantity' => request('available_quantity'),
+            'price' => request('price'),
+            'description' => request('description'),
+            'user_id' => auth()->id()
+        ]);
+        return redirect('/');
     }
 
     /**
@@ -48,7 +59,8 @@ class BooksController extends Controller
      */
     public function show(Book $book)
     {
-        return view('books.show', compact('book'));
+        $reviews = $book->reviews()->latest()->get();
+        return view('books.show', compact('book', 'reviews'));
     }
 
     /**

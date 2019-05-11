@@ -36,12 +36,12 @@
                                     @endforeach
                                 </div>
 
-                                <h3 class="mb-0"><a class=" text-dark" href="/book/{{$book->id}}">{{$book->title}}</a>
+                                <h3 class="mb-0"><a class=" text-dark" href="/books/{{$book->id}}">{{$book->title}}</a>
                                 </h3>
                                 <div class="mb-1 text-muted">{{$book->publication_date}}</div>
                                 <p class="card-text mb-auto">{{$book->description}}.</p>
-                                <div class="mb-1 text-muted">Author: {{$book->Author->name}}</div>
-                                <div class="mb-1 text-muted">Publisher: {{$book->publisher->name}}</div>
+                                <div class="mb-1 text-muted">Author: {{$book->author_name}}</div>
+                                <div class="mb-1 text-muted">Publisher: {{$book->publisher_name}}</div>
                                 <strong class="d-inline-block mb-2 text-primary">Price:{{$book->price}}$</strong>
 
                             </div>

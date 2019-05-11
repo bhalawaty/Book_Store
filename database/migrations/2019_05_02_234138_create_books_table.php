@@ -17,8 +17,9 @@ class CreateBooksTable extends Migration
             $table->increments('id');
             $table->string('img', 255);
             $table->string('description', 255);
-            $table->integer('author_id');
-            $table->integer('publisher_id');
+            $table->integer('user_id');
+            $table->integer('author_name');
+            $table->integer('publisher_name');
             $table->string('title');
             $table->date('publication_date');
             $table->integer('edition');
