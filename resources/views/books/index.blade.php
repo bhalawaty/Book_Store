@@ -35,9 +35,18 @@
 
                                     @endforeach
                                 </div>
+                                <div style=" display: flex;align-items: center">
+                                    <div style="flex: 1">
+                                        <h3 class="mb-0">
+                                            <a class=" text-dark" href="/books/{{$book->id}}">{{$book->title}}</a>
+                                        </h3>
+                                    </div>
+                                    <div>
+                                        <strong class="d-inline-block mb-2 text-primary">{{$book->reviews->count()}} {{str_plural('review',$book->reviews->count())}}</strong>
 
-                                <h3 class="mb-0"><a class=" text-dark" href="/books/{{$book->id}}">{{$book->title}}</a>
-                                </h3>
+                                    </div>
+                                </div>
+
                                 <div class="mb-1 text-muted">{{$book->publication_date}}</div>
                                 <p class="card-text mb-auto">{{$book->description}}.</p>
                                 <div class="mb-1 text-muted">Author: {{$book->author_name}}</div>
