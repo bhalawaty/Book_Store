@@ -8,6 +8,8 @@
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Blog Template · Bootstrap</title>
     @yield('header')
+    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
+
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/blog/">
 
     <!-- Bootstrap core CSS -->

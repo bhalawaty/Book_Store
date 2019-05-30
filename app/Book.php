@@ -34,5 +34,23 @@ class Book extends Model
         $this->reviews()->create($review);
     }
 
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favorited');
+    }
+
+    public function favorite()
+    {
+        if (!$this->favorites()->where(['user_id' => Auth()->id()])->exists()) {
+            return $this->favorites()->create(['user_id' => Auth()->id()]);
+        }
+
+    }
+
+    public function isFavorited()
+    {
+        return $this->favorites()->where('user_id', Auth()->id())->exists();
+    }
+
 
 }

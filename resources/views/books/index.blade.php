@@ -42,7 +42,21 @@
                                         </h3>
                                     </div>
                                     <div>
-                                        <strong class="d-inline-block mb-2 text-primary">{{$book->reviews->count()}} {{str_plural('review',$book->reviews->count())}}</strong>
+                                        <form method="POST" action="books/{{$book->id}}/favorite">
+                                            {{csrf_field()}}
+                                            @if($book->isFavorited())
+                                                <button class="favorite" type="submit"
+                                                        style="border: none; background: none" disabled>
+                                                    <i style="color:#ED4956;" class="fas fa-2x fa-heart "></i>
+                                                </button>
+                                            @else
+                                                <button class="favorite" type="submit"
+                                                        style="border: none; background: none">
+                                                    <i style="color:#55595C" class="fas fa-2x fa-heart "></i>
+                                                </button>
+                                            @endif
+
+                                        </form>
 
                                     </div>
                                 </div>
@@ -51,7 +65,17 @@
                                 <p class="card-text mb-auto">{{$book->description}}.</p>
                                 <div class="mb-1 text-muted">Author: {{$book->author_name}}</div>
                                 <div class="mb-1 text-muted">Publisher: {{$book->publisher_name}}</div>
-                                <strong class="d-inline-block mb-2 text-primary">Price:{{$book->price}}$</strong>
+                                <div style=" display: flex;align-items: center">
+                                    <div style="flex: 1">
+                                        <strong class="d-inline-block mb-2 text-primary">Price:{{$book->price}}
+                                            $</strong>
+                                    </div>
+                                    <div>
+                                        <strong class="d-inline-block mb-2 text-primary">{{$book->reviews->count()}} {{str_plural('review',$book->reviews->count())}}</strong>
+
+                                    </div>
+                                </div>
+
 
                             </div>
                             <div class="col-auto d-none d-lg-block">
