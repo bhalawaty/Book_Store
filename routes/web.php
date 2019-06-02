@@ -25,3 +25,4 @@ Route::get('/books/{book}', 'BooksController@show');
 Route::get('/tag/{tag}', 'TagsController@index');
 Route::post('/books/{book}/reviews', 'ReviewsController@store');
 Route::post('/books/{book}/favorite', 'FavoritesController@store');
+
