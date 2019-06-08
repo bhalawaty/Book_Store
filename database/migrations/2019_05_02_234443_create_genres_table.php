@@ -19,11 +19,6 @@ class CreateGenresTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('book_genre', function (Blueprint $table) {
-            $table->integer('book_id');
-            $table->integer('genre_id');
-            $table->primary(['book_id','genre_id']);
-        });
     }
 
     /**

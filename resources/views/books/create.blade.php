@@ -5,8 +5,22 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form method="post" action="/books/create">
+            <form method="post" action="/books/create" enctype="multipart/form-data">
                 {{csrf_field()}}
+
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label for="tag_id" class="input-group-text">Options</label>
+                        </div>
+                        <select name="tag_id" class="custom-select" id="tag_id">
+                            <option selected>Choose...</option>
+                            @foreach($tags as $tag)
+                                <option value={{$tag->id}}>{{$tag->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group">
                     <input type="text" name="title" class="form-control" placeholder="title" required>
                 </div>
@@ -33,6 +47,9 @@
                 </div>
                 <div class="form-group">
                     <input type="text" name="description" class="form-control" placeholder="description" required>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="img" class="form-control" required/>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

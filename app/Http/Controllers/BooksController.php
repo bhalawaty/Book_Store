@@ -13,6 +13,12 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     public function index()
     {
         $books = Book::latest()->get();
@@ -26,7 +32,9 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $tags = Genre::all();
+
+        return view('books.create', compact('tags'));
     }
 
     /**
@@ -37,7 +45,10 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
+
+
         Book::create([
+            'genre_id' => request('tag_id'),
             'title' => request('title'),
             'author_name' => request('author_name'),
             'publisher_name' => request('publisher_name'),
@@ -45,6 +56,7 @@ class BooksController extends Controller
             'edition' => request('edition'),
             'available_quantity' => request('available_quantity'),
             'price' => request('price'),
+            'img' => request()->file('img')->store('book_cover', 'public'),
             'description' => request('description'),
             'user_id' => auth()->id()
         ]);

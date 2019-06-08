@@ -17,7 +17,7 @@ class CreateReviewsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('book_id');
             $table->integer('user_id');
-            $table->string('review');
+            $table->text('review');
             $table->timestamps();
         });
     }

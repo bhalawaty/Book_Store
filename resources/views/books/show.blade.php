@@ -13,14 +13,41 @@
                     <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm  position-relative">
                         <div class="col p-4 d-flex flex-column position-static">
                             <div class="nav d-flex" style="margin-bottom: 30px;">
-                                @foreach($book->genres->pluck('name') as $tag )
+
                                     <div style="margin:0 10px 30px;border: solid 1px #227dc7;border-radius: 6px!important;padding:5px; background-color: #227dc7 ;color: #ffffff;margin-bottom: 5px;font-weight: 100;">
-                                        <strong><a class="text-white" href="/tag/{{$tag}}">{{$tag}}</a></strong>
+                                        <strong><a class="text-white"
+                                                   href="/tag/{{$book->genre->name}}">{{$book->genre->name}}</a></strong>
                                     </div>
 
-                                @endforeach
                             </div>
-                            <h3 class="mb-0">{{$book->title}}</h3>
+                            <div style=" display: flex;align-items: center">
+                                <div style="flex: 1">
+                                    <h3 class="mb-0">
+                                        {{$book->title}}
+                                    </h3>
+                                </div>
+                                @if(auth()->check())
+                                    <div>
+                                        <form method="POST" action="/{{$book->id}}/favorite">
+                                            {{csrf_field()}}
+                                            @if($book->isFavorited())
+                                                <button class="favorite" type="submit"
+                                                        style="border: none; background: none" disabled>
+                                                    <i style="color:#ED4956;" class="fas fa-2x fa-heart "></i>
+                                                </button>
+                                            @else
+                                                <button class="favorite" type="submit"
+                                                        style="border: none; background: none">
+                                                    <i style="color:#55595C" class="fas fa-2x fa-heart "></i>
+                                                </button>
+                                            @endif
+
+                                        </form>
+                                    </div>
+                                @endif
+
+                            </div>
+
                             <div class="mb-1 text-muted">publication date: {{$book->publication_date}}</div>
                             <p class="card-text mb-auto">{{$book->description}}.</p>
                             <div class="mb-1 text-muted">Author: {{$book->author_name}}</div>
@@ -33,13 +60,8 @@
 
                         </div>
                         <div class="col-auto d-none d-lg-block">
-                            <svg class="bd-placeholder-img" width="250" height="350"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-                                 aria-label="Placeholder: Thumbnail"><title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"/>
-                                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Book Cover</text>
-                            </svg>
+                            <img class="bd-placeholder-img" width="250" height="350"
+                                 src="{{ asset("storage/$book->img") }}">
                         </div>
                     </div>
                 </div>

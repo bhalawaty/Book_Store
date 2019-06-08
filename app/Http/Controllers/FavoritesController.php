@@ -13,6 +13,6 @@ class FavoritesController extends Controller
     {
         $book->favorite();
 
-        return back();
+        return redirect()->back();
     }
 }

@@ -24,5 +24,6 @@ Route::post('/books/create', 'BooksController@store');
 Route::get('/books/{book}', 'BooksController@show');
 Route::get('/tag/{tag}', 'TagsController@index');
 Route::post('/books/{book}/reviews', 'ReviewsController@store');
-Route::post('/books/{book}/favorite', 'FavoritesController@store');
+Route::post('books/{book}/favorite', 'FavoritesController@store');
+Route::post('/{book}/favorite', 'FavoritesController@store');
 

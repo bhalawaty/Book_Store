@@ -45,10 +45,13 @@ $factory->define(Book::class, function (Faker $faker) {
         'user_id' => function () {
             return factory(App\User::class)->create()->id;
         },
+        'genre_id' => function () {
+            return factory(App\Genre::class)->create()->id;
+        },
         'author_name' => $faker->name,
         'publisher_name' => $faker->name,
         'description' => $faker->paragraph,
-        'img' => $faker->image(),
+//        'img' => $faker->image()->,
         'title' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'publication_date'=> $faker->date(),
         'edition'=> $faker->randomDigit,
@@ -82,7 +85,8 @@ $factory->define(Discount::class, function (Faker $faker) {
 
 $factory->define(Genre::class, function (Faker $faker) {
     return [
-        'name' => $faker->unique()->name,
+
+        'name' => $faker->unique()->word,
 
     ];
 });
