@@ -48,11 +48,26 @@
 <div class="container">
     <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="text-muted" href="/books/create">Add New Book</a>
+            <div class="col-1.5 pt-1">
+                <a class="text-muted" href="/books/create">New Book</a>
+            </div>
+            <div class="col-2.5 pt-1">
+                <ul class="nav" id="nav">
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-muted" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Browse Books<span
+                                    class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="/books">All Books</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/books?by={{auth()->user()->name}}">My
+                                    Books</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
             <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="/">Large</a>
+                <a class="blog-header-logo text-dark" href="/books">Large</a>
             </div>
             <div class="col-4 d-flex align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -73,7 +88,7 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-muted" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>

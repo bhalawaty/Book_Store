@@ -14,10 +14,12 @@
                         <div class="col p-4 d-flex flex-column position-static">
                             <div class="nav d-flex" style="margin-bottom: 30px;">
 
-                                    <div style="margin:0 10px 30px;border: solid 1px #227dc7;border-radius: 6px!important;padding:5px; background-color: #227dc7 ;color: #ffffff;margin-bottom: 5px;font-weight: 100;">
-                                        <strong><a class="text-white"
-                                                   href="/tag/{{$book->genre->name}}">{{$book->genre->name}}</a></strong>
-                                    </div>
+                                <div style="margin:0 10px 30px;border: solid 1px #227dc7;border-radius: 6px!important;padding:5px; background-color: #227dc7 ;color: #ffffff;margin-bottom: 5px;font-weight: 100;">
+                                    <strong><a class="text-white"
+                                               href="/tag/{{$book->genre->name}}">{{$book->genre->name}}
+                                        </a>
+                                    </strong>
+                                </div>
 
                             </div>
                             <div style=" display: flex;align-items: center">
@@ -60,8 +62,13 @@
 
                         </div>
                         <div class="col-auto d-none d-lg-block">
+                            <?php
+                            $img = $book->img;
+                            $img = str_replace('\\', '/', $img);
+                            $img = str_replace('public/storage', '', $img);
+                            ?>
                             <img class="bd-placeholder-img" width="250" height="350"
-                                 src="{{ asset("storage/$book->img") }}">
+                                 src="{{ asset("storage/$img") }}">
                         </div>
                     </div>
                 </div>

@@ -85,7 +85,7 @@
                                     <?php
                                     $img = $book->img;
                                     $img = str_replace('\\', '/', $img);
-
+                                    $img = str_replace('public/storage', '', $img);
                                     ?>
                                     <img class="bd-placeholder-img" width="250" height="350"
                                          src="{{ asset("storage/$img") }}">

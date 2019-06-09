@@ -21,7 +21,12 @@ class BooksController extends Controller
 
     public function index()
     {
-        $books = Book::latest()->get();
+        $books = Book::latest();
+        if ($username = request('by')) {
+            $user = \App\User::where('name', $username)->firstOrFail();
+            $books->where('user_id', $user->id);
+        }
+        $books = $books->get();
         return view('books.index', compact('books'));
     }
 
