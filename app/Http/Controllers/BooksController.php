@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Filters\BooksFilters;
 use App\Genre;
 use Illuminate\Http\Request;
 
@@ -19,14 +20,10 @@ class BooksController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    public function index()
+    public function index(BooksFilters $filters)
     {
         $books = Book::latest();
-        if ($username = request('by')) {
-            $user = \App\User::where('name', $username)->firstOrFail();
-            $books->where('user_id', $user->id);
-        }
-        $books = $books->get();
+        $books = $books->filter($filters)->get();
         return view('books.index', compact('books'));
     }
 
