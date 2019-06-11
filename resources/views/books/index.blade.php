@@ -24,14 +24,15 @@
 
 
                 @foreach($books as $book)
+
                     <div class="blog-post">
                         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-354 position-relative">
                             <div class="col p-4 d-flex flex-column position-static">
                                 <div class="nav d-flex justify-content-between">
-                                        <div style="margin:0 10px 30px;border: solid 1px #227dc7;border-radius: 6px!important;padding:5px; background-color: #227dc7 ;color: #ffffff;margin-bottom: 5px;font-weight: 100;">
-                                            <strong><a class="text-white"
-                                                       href="/tag/{{$book->genre->name}}">{{$book->genre->name}}</a></strong>
-                                        </div>
+                                    <div style="margin:0 10px 30px;border: solid 1px #227dc7;border-radius: 6px!important;padding:5px; background-color: #227dc7 ;color: #ffffff;margin-bottom: 5px;font-weight: 100;">
+                                        <strong><a class="text-white"
+                                                   href="/tag/{{$book->genre->name}}">{{$book->genre->name}}</a></strong>
+                                    </div>
 
 
                                 </div>
@@ -73,7 +74,7 @@
                                             $</strong>
                                     </div>
                                     <div>
-                                        <strong class="d-inline-block mb-2 text-primary">{{$book->reviews->count()}} {{str_plural('review',$book->reviews->count())}}</strong>
+                                        <strong class="d-inline-block mb-2 text-primary">{{$book->reviews_count}} {{str_plural('review',$book->reviews_count)}}</strong>
 
                                     </div>
                                 </div>
@@ -94,6 +95,7 @@
                         </div>
                     </div>
                 @endforeach
+                {{$books->links()}}
             </div><!-- /.blog-main -->
 
 

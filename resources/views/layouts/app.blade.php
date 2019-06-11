@@ -59,10 +59,13 @@
                                     class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="nav-item"><a class="nav-link" href="/books">All Books</a></li>
+                            <li class="nav-item"><a class="nav-link text-muted" href="/books">All Books</a></li>
                             @if(auth()->check())
-                                <li class="nav-item"><a class="nav-link" href="/books?by={{auth()->user()->name}}">My
+                                <li class="nav-item"><a class="nav-link text-muted"
+                                                        href="/books?by={{auth()->user()->name}}">My
                                     Books</a></li>
+                                <li class="nav-item"><a class="nav-link text-muted" href="/books?popularity=1">Popular
+                                        Books</a></li>
                             @endif
                         </ul>
                     </li>

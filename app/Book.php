@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
@@ -8,12 +9,22 @@ class Book extends Model
 
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('reviewCount', function ($builder) {
+            $builder->withCount('reviews');
+        });
+    }
+
     public function scopeFilter($query, $filters)
     {
 
         return $filters->apply($query);
 
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);
