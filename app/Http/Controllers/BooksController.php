@@ -62,7 +62,7 @@ class BooksController extends Controller
             'description' => request('description'),
             'user_id' => auth()->id()
         ]);
-        return redirect('/');
+        return redirect('/books');
     }
 
     /**

@@ -3,18 +3,22 @@
 namespace App\Filters;
 
 use App\User;
+use Illuminate\Http\Request;
 
-class BooksFilters
+class BooksFilters extends Filters
 {
 
-    public function apply($builder)
-    {
+    protected $filters = ['by'];
 
-        if ($username = request('by')) {
-            $user = User::where('name', $username)->firstOrFail();
-            $builder->where('user_id', $user->id);
-        }
-        return $builder;
+    /**
+     * @param $builder
+     * @param $username
+     * @return mixed
+     */
+    public function by($username)
+    {
+        $user = User::where('name', $username)->firstOrFail();
+        return $this->builder->where('user_id', $user->id);
     }
 
 }

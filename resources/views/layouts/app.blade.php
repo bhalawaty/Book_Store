@@ -60,8 +60,10 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="nav-item"><a class="nav-link" href="/books">All Books</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/books?by={{auth()->user()->name}}">My
+                            @if(auth()->check())
+                                <li class="nav-item"><a class="nav-link" href="/books?by={{auth()->user()->name}}">My
                                     Books</a></li>
+                            @endif
                         </ul>
                     </li>
                 </ul>
