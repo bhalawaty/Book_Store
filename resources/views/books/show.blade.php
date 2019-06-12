@@ -30,7 +30,7 @@
                                 </div>
                                 @if(auth()->check())
                                     <div>
-                                        <form method="POST" action="/{{$book->id}}/favorite">
+                                        <form method="POST" action="/books/{{$book->id}}/favorite">
                                             {{csrf_field()}}
                                             @if($book->isFavorited())
                                                 <button class="favorite" type="submit"
@@ -51,6 +51,8 @@
                             </div>
 
                             <div class="mb-1 text-muted">publication date: {{$book->publication_date}}</div>
+                            <div class="mb-1 text-muted">Created By: <a
+                                        href="/profile/{{$book->user->name}}">{{$book->user->name}}</a></div>
                             <p class="card-text mb-auto">{{$book->description}}.</p>
                             <div class="mb-1 text-muted">Author: {{$book->author_name}}</div>
                             <div class="mb-1 text-muted">Publisher: {{$book->publisher_name}}</div>
@@ -83,7 +85,8 @@
                     </div>
                     @foreach($book->reviews as $review )
                         <div class="card-body">
-                            <h4 class="card-title">By: <a href="#">{{$review->user->name}}</a>
+                            <h4 class="card-title">By: <a
+                                        href="/profile/{{$review->user->name}}">{{$review->user->name}}</a>
                                 said {{$review->created_at->diffForHumans() }}</h4>
                             <p class="card-text">{{$review->review}}.</p>
                         </div>

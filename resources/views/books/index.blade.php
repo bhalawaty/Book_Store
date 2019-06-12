@@ -44,7 +44,7 @@
                                     </div>
                                     @if(auth()->check())
                                         <div>
-                                            <form method="POST" action="books/{{$book->id}}/favorite">
+                                            <form method="POST" action="/books/{{$book->id}}/favorite">
                                                 {{csrf_field()}}
                                                 @if($book->isFavorited())
                                                     <button class="favorite" type="submit"
@@ -65,6 +65,8 @@
                                 </div>
 
                                 <div class="mb-1 text-muted">{{$book->publication_date}}</div>
+                                <div class="mb-1 text-muted">Created By: <a
+                                            href="/profile/{{{$book->user->name}}}">{{$book->user->name}}</a></div>
                                 <p class="card-text mb-auto">{{$book->description}}.</p>
                                 <div class="mb-1 text-muted">Author: {{$book->author_name}}</div>
                                 <div class="mb-1 text-muted">Publisher: {{$book->publisher_name}}</div>

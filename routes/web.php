@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/profile/{user}', 'UsersController@show');
+
 Route::get('/books', 'BooksController@index');
 Route::get('/books/create', 'BooksController@create');
 Route::post('/books/create', 'BooksController@store');
@@ -25,5 +25,4 @@ Route::get('/books/{book}', 'BooksController@show');
 Route::get('/tag/{tag}', 'TagsController@index');
 Route::post('/books/{book}/reviews', 'ReviewsController@store');
 Route::post('books/{book}/favorite', 'FavoritesController@store');
-Route::post('/{book}/favorite', 'FavoritesController@store');
 

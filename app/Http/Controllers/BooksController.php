@@ -22,8 +22,7 @@ class BooksController extends Controller
 
     public function index(BooksFilters $filters)
     {
-        $books = Book::latest()->filter($filters);
-//        dd($books->toSql());
+        $books = Book::with('genre', 'user')->latest()->filter($filters);
         $books = $books->paginate(5);
 
         return view('books.index', compact('books'));
