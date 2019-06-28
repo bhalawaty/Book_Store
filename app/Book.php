@@ -16,6 +16,9 @@ class Book extends Model
         static::addGlobalScope('reviewCount', function ($builder) {
             $builder->withCount('reviews');
         });
+        static::deleting(function ($book) {
+            $book->reviews()->delete();
+        });
     }
 
     public function scopeFilter($query, $filters)
@@ -35,10 +38,6 @@ class Book extends Model
         return $this->belongsTo(Genre::class);
     }
 
-    public function discount()
-    {
-        return $this->belongsToMany(Discount::class);
-    }
 
     public function reviews()
     {

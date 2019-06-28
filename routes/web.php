@@ -21,6 +21,7 @@ Route::get('/profile/{user}', 'UsersController@show');
 Route::get('/books', 'BooksController@index');
 Route::get('/books/create', 'BooksController@create');
 Route::post('/books/create', 'BooksController@store');
+Route::post('/books/{book}/delete', 'BooksController@destroy');
 Route::get('/books/{book}', 'BooksController@show');
 Route::get('/tag/{tag}', 'TagsController@index');
 Route::post('/books/{book}/reviews', 'ReviewsController@store');

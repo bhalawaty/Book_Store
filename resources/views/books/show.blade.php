@@ -56,12 +56,20 @@
                             <p class="card-text mb-auto">{{$book->description}}.</p>
                             <div class="mb-1 text-muted">Author: {{$book->author_name}}</div>
                             <div class="mb-1 text-muted">Publisher: {{$book->publisher_name}}</div>
-                            <strong class="d-inline-block mb-2 text-primary">Price:{{$book->price}}$</strong>
-                            {{--{{dd($book->discount->pluck('name'))}}--}}
-                            @foreach($book->discount->pluck('value') as $discount )
-                                <strong class="d-inline-block mb-2 text-danger">Discount: {{$discount}}%</strong>
-                            @endforeach
+                            <div style=" display: flex;align-items: center">
+                                <div style="flex: 1">
+                                    <strong class="d-inline-block mb-2 text-primary">Price:{{$book->price}}$</strong>
+                                </div>
 
+                                @if(auth()->id()== $book->user->id)
+                                    <div>
+                                        <form method="POST" action="/books/{{$book->id}}/delete">
+                                            {{csrf_field()}}
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                         <div class="col-auto d-none d-lg-block">
                             <?php

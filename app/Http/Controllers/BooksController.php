@@ -48,8 +48,6 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-
-
         Book::create([
             'genre_id' => request('tag_id'),
             'title' => request('title'),
@@ -74,6 +72,7 @@ class BooksController extends Controller
      */
     public function show(Book $book)
     {
+
         $reviews = $book->reviews()->latest()->get();
         return view('books.show', compact('book', 'reviews'));
     }
@@ -107,8 +106,9 @@ class BooksController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect('/books');
     }
 }
