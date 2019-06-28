@@ -12,7 +12,7 @@ class Book extends Model
     protected static function boot()
     {
         parent::boot();
-
+//test git
         static::addGlobalScope('reviewCount', function ($builder) {
             $builder->withCount('reviews');
         });
