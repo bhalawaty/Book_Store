@@ -17,9 +17,6 @@ Route::get('/down', function () {
     Artisan::call('down');
 });
 
-Route::get('/up', function () {
-    Artisan::call('up');
-});
 
 Route::get('/', 'HomeController@index')->name('home');
 
